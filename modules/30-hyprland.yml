@@ -1,11 +1,11 @@
-name: hyprland-build # TODO: Make this a shell
-type: make
-buildcommand: "make all"
-installcommand: "make install"
-sources:
-  - type: git
-    url: https://github.com/hyprwm/Hyprland.git
-    tag: v0.47.2
+name: hyprland-build
+type: shell
+commands:
+- git clone --depth 1 --branch v0.47.2 --recursive https://github.com/hyprwm/Hyprland.git
+- cd Hyprland
+- make all && make install
+- cd ..
+- rm -rf Hyprland
 modules:
 - name: hyprland-deps-install
   type: apt
@@ -69,36 +69,56 @@ modules:
     - type: git
       url: https://gitlab.freedesktop.org/emersion/libdisplay-info.git
       tag: 0.2.0
-- name: aquamarine # TODO: Make this a shell
-  type: cmake
-  sources:
-    - type: git
-      url: https://github.com/hyprwm/aquamarine.git
-      tag: v0.8.0
-- name: hyprlang # TODO: Make this a shell
-  type: cmake
-  sources:
-    - type: git
-      url: https://github.com/hyprwm/hyprlang.git
-      tag: v0.6.0
-- name: hyprcursor # TODO: Make this a shell
-  type: cmake
-  sources:
-    - type: git
-      url: https://github.com/hyprwm/hyprcursor.git
-      tag: v0.1.12
-- name: hyprutils # TODO: Make this a shell
-  type: cmake
-  sources:
-    - type: git
-      url: https://github.com/hyprwm/hyprutils.git
-      tag: v0.5.2
-- name: hyprgraphics # TODO: Make this a shell
-  type: cmake
-  sources:
-    - type: git
-      url: https://github.com/hyprwm/hyprgraphics.git
-      tag: v0.1.2
+- name: aquamarine
+  type: shell
+  commands:
+  - git clone --depth 1 --branch v0.8.0 https://github.com/hyprwm/aquamarine.git
+  - cd aquamarine
+  - cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+  - cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  - cmake --install build
+  - cd ..
+  - rm -rf aquamarine
+- name: hyprlang
+  type: shell
+  commands:
+  - git clone --depth 1 --branch v0.6.0 https://github.com/hyprwm/hyprlang.git
+  - cd hyprlang
+  - cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+  - cmake --build ./build --config Release --target hyprlang -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  - cmake --install build
+  - cd ..
+  - rm -rf hyprlang
+- name: hyprcursor
+  type: shell
+  commands:
+  - git clone --depth 1 --branch v0.1.12 https://github.com/hyprwm/hyprcursor.git
+  - cd hyprcursor
+  - cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+  - cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  - cmake --install build
+  - cd ..
+  - rm -rf hyprcursor
+- name: hyprutils
+  type: shell
+  commands:
+  - git clone --depth 1 --branch v0.5.2 https://github.com/hyprwm/hyprutils.git
+  - cd hyprutils
+  - cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+  - cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+  - cmake --install build
+  - cd ..
+  - rm -rf hyprutils
+- name: hyprgraphics
+  type: shell
+  commands:
+  - git clone --depth 1 --branch v0.1.2 https://github.com/hyprwm/hyprgraphics.git
+  - cd hyprgraphics
+  - cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+  - cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+  - cmake --install build
+  - cd ..
+  - rm -rf hyprgraphics
   modules:
   - name: hyprgraphics-deps
     type: apt
@@ -112,12 +132,16 @@ modules:
         - libjxl-tools
         - libmagic-dev
         - libspng-dev
-- name: hyprwayland-scanner # TODO: Make this a shell
-  type: cmake
-  sources:
-    - type: git
-      url: https://github.com/hyprwm/hyprwayland-scanner.git
-      tag: v0.4.4
+- name: hyprwayland-scanner
+  type: shell
+  commands:
+  - git clone --depth 1 --branch v0.4.4 https://github.com/hyprwm/hyprwayland-scanner.git
+  - cd hyprwayland-scanner
+  - cmake -DCMAKE_INSTALL_PREFIX=/usr -B build
+  - cmake --build build -j `nproc`
+  - cmake --install build
+  - cd ..
+  - rm -rf hyprwayland-scanner
 
 # xdg-desktop-portal-hyprland, hyprpolkitagent
 

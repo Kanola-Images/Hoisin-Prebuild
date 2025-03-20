@@ -1,7 +1,7 @@
 name: hyprland-xdg
 type: shell
 commands:
-- git clone --recursive https://github.com/hyprwm/xdg-desktop-portal-hyprland
+- git clone --depth 1 --branch v1.3.9 --recursive https://github.com/hyprwm/xdg-desktop-portal-hyprland 
 - cd xdg-desktop-portal-hyprland/
 - cmake -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -B build
 - cmake --build build
