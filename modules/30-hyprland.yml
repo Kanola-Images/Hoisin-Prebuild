@@ -1,0 +1,74 @@
+name: hyprland-build
+type: make
+buildcommand: "make all"
+installcommand: "make install"
+sources:
+  - type: tar
+    url: https://github.com/hyprwm/Hyprland/releases/download/v0.47.2/source-v0.47.2.tar.gz
+modules:
+- name: hyprland-deps-install
+  type: apt
+  - sources:
+      packages:
+      - meson 
+      - wget 
+      - build-essential
+      - ninja-build
+      - cmake-extras
+      - cmake
+      - gettext
+      - gettext-base
+      - fontconfig
+      - libfontconfig-dev
+      - libffi-dev
+      - libxml2-dev
+      - libdrm-dev
+      - libxkbcommon-x11-dev
+      - libxkbregistry-dev
+      - libxkbcommon-dev
+      - libpixman-1-dev
+      - libudev-dev
+      - libseat-dev
+      - seatd
+      - libxcb-dri3-dev
+      - libegl-dev
+      - libgles2
+      - libegl1-mesa-dev
+      - glslang-tools
+      - libinput-bin
+      - libinput-dev
+      - libxcb-composite0-dev
+      - libavutil-dev
+      - libavcodec-dev
+      - libavformat-dev
+      - libxcb-ewmh2
+      - libxcb-ewmh-dev
+      - libxcb-present-dev
+      - libxcb-icccm4-dev
+      - libxcb-render-util0-dev
+      - libxcb-res0-dev
+      - libxcb-xinput-dev
+      - libtomlplusplus3
+      - libre2-dev
+
+
+# sudo apt install -y meson wget build-essential ninja-build cmake-extras cmake gettext gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd libxcb-dri3-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libtomlplusplus3 libre2-dev
+
+# You will also need to build the latest wayland, wayland-protocols, and libdisplay-info tagged releases from source.
+
+# xdg-desktop-portal-hyprland, hyprpolkitagent
+
+# git clone --recursive https://github.com/hyprwm/Hyprland
+# cd Hyprland
+# make all && sudo make install (via cmake)
+
+# We want hyprland 0.47.2
+
+# Additionally to those, you will also need a few hypr* dependencies which may or may not be packaged for your distro of choice:
+
+#    aquamarine
+#    hyprlang
+#    hyprcursor
+#    hyprutils
+#    hyprgraphics
+#    hyprwayland-scanner (build-only
