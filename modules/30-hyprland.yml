@@ -1,15 +1,16 @@
-name: hyprland-build
+name: hyprland-build # TODO: Make this a shell
 type: make
 buildcommand: "make all"
 installcommand: "make install"
 sources:
-  - type: tar
-    url: https://github.com/hyprwm/Hyprland/releases/download/v0.47.2/source-v0.47.2.tar.gz
+  - type: git
+    url: https://github.com/hyprwm/Hyprland.git
+    tag: v0.47.2
 modules:
 - name: hyprland-deps-install
   type: apt
-  - sources:
-      packages:
+  sources:
+    - packages:
       - meson 
       - wget 
       - build-essential
@@ -50,11 +51,73 @@ modules:
       - libxcb-xinput-dev
       - libtomlplusplus3
       - libre2-dev
-
-
-# sudo apt install -y meson wget build-essential ninja-build cmake-extras cmake gettext gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd libxcb-dri3-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libtomlplusplus3 libre2-dev
-
-# You will also need to build the latest wayland, wayland-protocols, and libdisplay-info tagged releases from source.
+- name: wayland
+  type: meson
+  sources:
+    - type: git
+      url: https://gitlab.freedesktop.org/wayland/wayland.git
+      tag: 1.23.1
+- name: wayland-protocols
+  type: meson
+  sources:
+    - type: git
+      url: https://gitlab.freedesktop.org/wayland/wayland-protocols.git
+      tag: 1.41
+- name: libdisplay-info
+  type: meson
+  sources:
+    - type: git
+      url: https://gitlab.freedesktop.org/emersion/libdisplay-info.git
+      tag: 0.2.0
+- name: aquamarine # TODO: Make this a shell
+  type: cmake
+  sources:
+    - type: git
+      url: https://github.com/hyprwm/aquamarine.git
+      tag: v0.8.0
+- name: hyprlang # TODO: Make this a shell
+  type: cmake
+  sources:
+    - type: git
+      url: https://github.com/hyprwm/hyprlang.git
+      tag: v0.6.0
+- name: hyprcursor # TODO: Make this a shell
+  type: cmake
+  sources:
+    - type: git
+      url: https://github.com/hyprwm/hyprcursor.git
+      tag: v0.1.12
+- name: hyprutils # TODO: Make this a shell
+  type: cmake
+  sources:
+    - type: git
+      url: https://github.com/hyprwm/hyprutils.git
+      tag: v0.5.2
+- name: hyprgraphics # TODO: Make this a shell
+  type: cmake
+  sources:
+    - type: git
+      url: https://github.com/hyprwm/hyprgraphics.git
+      tag: v0.1.2
+  modules:
+  - name: hyprgraphics-deps
+    type: apt
+    sources:
+      - packages:
+        - libpixman-1-dev
+        - libcairo2-dev
+        - libjpeg-dev
+        - libwebp-dev
+        - libjxl-dev
+        - libjxl-tools
+        - libmagic-dev
+        - libspng-dev
+- name: hyprwayland-scanner # TODO: Make this a shell
+  type: cmake
+  sources:
+    - type: git
+      url: https://github.com/hyprwm/hyprwayland-scanner.git
+      tag: v0.4.4
 
 # xdg-desktop-portal-hyprland, hyprpolkitagent
 

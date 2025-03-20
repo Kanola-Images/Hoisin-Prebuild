@@ -23,7 +23,6 @@ modules:
       - qt5-qmake
       - qt6-base-dev
       - qt6-wayland
-      - libwayland-dev
       - libqt5waylandclient5
       - libqt5waylandclient5-dev
       - qtwayland5

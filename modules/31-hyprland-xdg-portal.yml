@@ -1,0 +1,19 @@
+name: hyprland-xdg
+type: shell
+commands:
+- git clone --recursive https://github.com/hyprwm/xdg-desktop-portal-hyprland
+- cd xdg-desktop-portal-hyprland/
+- cmake -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -B build
+- cmake --build build
+- cmake --install build
+- cd ..
+- rm -rf xdg-desktop-portal-hyprland
+modules:
+- name: hyprland-xdg-deps-install
+  type: apt
+  sources:
+    - packages:
+      - libdrm-dev
+      - libpipewire-0.3-0-dev
+      - libspa-0.2-dev
+      - sdbus-cpp

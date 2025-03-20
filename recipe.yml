@@ -26,7 +26,9 @@ stages:
   - name: packages-modules
     type: includes
     includes:
-      - modules/20-qtgreet.yml
+      - modules/30-hyprland.yml
+      - modules/31-hyprland-xdg-portal.yml
+      - modules/50-qtgreet.yml
 
   - name: cleanup
     type: shell
