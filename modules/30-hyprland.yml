@@ -64,6 +64,9 @@ modules:
       - packages:
         - graphviz
         - doxygen
+        - xsltproc
+        - xmlto
+        - libxml2-dev
 - name: wayland-protocols
   type: meson
   sources:
