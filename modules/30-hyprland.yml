@@ -79,6 +79,12 @@ modules:
     - type: git
       url: https://gitlab.freedesktop.org/emersion/libdisplay-info.git
       tag: 0.2.0
+  modules:
+  - name: libdisplay-deps
+    type: apt
+    sources:
+      - packages:
+        - hwdata
 - name: aquamarine
   type: shell
   commands:
