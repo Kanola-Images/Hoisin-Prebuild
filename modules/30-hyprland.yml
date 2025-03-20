@@ -57,6 +57,12 @@ modules:
     - type: git
       url: https://gitlab.freedesktop.org/wayland/wayland.git
       tag: 1.23.1
+  modules:
+  - name: wayland-deps
+    type: apt
+    sources:
+      - packages:
+        - graphviz
 - name: wayland-protocols
   type: meson
   sources:
