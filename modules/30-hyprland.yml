@@ -62,7 +62,7 @@ modules:
   sources:
     - type: git
       url: https://gitlab.freedesktop.org/wayland/wayland-protocols.git
-      tag: 1.41
+      tag: '1.41' # This is getting parsed as a number, so I need to quotate it.
 - name: libdisplay-info
   type: meson
   sources:
