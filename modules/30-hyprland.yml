@@ -53,6 +53,8 @@ modules:
       - libre2-dev
 - name: wayland
   type: meson
+  buildflags:
+    - "-Ddocumentation=false"
   sources:
     - type: git
       url: https://gitlab.freedesktop.org/wayland/wayland.git
@@ -62,10 +64,6 @@ modules:
     type: apt
     sources:
       - packages:
-        - graphviz
-        - doxygen
-        - xsltproc
-        - xmlto
         - libxml2-dev
 - name: wayland-protocols
   type: meson
