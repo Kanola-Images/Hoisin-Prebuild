@@ -11,6 +11,7 @@ modules:
   type: apt
   sources:
     - packages:
+      - git
       - meson 
       - wget 
       - build-essential
