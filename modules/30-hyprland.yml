@@ -53,6 +53,7 @@ modules:
       - libtomlplusplus3
       - libre2-dev
       - libxcursor-dev
+      - libxcb-errors-dev
 - name: wayland
   type: meson
   buildflags:
