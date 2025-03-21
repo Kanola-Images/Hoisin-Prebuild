@@ -17,3 +17,4 @@ modules:
       - libpipewire-0.3-dev
       - libspa-0.2-dev
       - libsdbus-c++-dev
+      - qt6-base-dev
