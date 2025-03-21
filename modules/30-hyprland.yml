@@ -94,6 +94,12 @@ modules:
   - cmake --install build
   - cd ..
   - rm -rf hyprwayland-scanner
+  modules:
+  - name: hyprwayland-scanner-deps
+    type: apt
+    sources:
+      - packages:
+        - libpugixml-dev
 - name: aquamarine
   type: shell
   commands:
@@ -124,6 +130,15 @@ modules:
   - cmake --install build
   - cd ..
   - rm -rf hyprcursor
+  modules:
+  - name: hyprcursor-deps
+    type: apt
+    sources:
+      - packages:
+        - libcairo2-dev
+        - libzip-dev
+        - librsvg2-dev
+        - libtomlplusplus-dev
 - name: hyprutils
   type: shell
   commands:
