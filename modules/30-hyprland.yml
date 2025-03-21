@@ -6,6 +6,7 @@ commands:
 - make all && make install
 - cd ..
 - rm -rf Hyprland
+- apt-mark hold hyprland
 modules:
 - name: hyprland-deps-install
   type: apt
