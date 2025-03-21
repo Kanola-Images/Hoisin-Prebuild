@@ -120,6 +120,12 @@ modules:
   - cmake --install build
   - cd ..
   - rm -rf aquamarine
+  modules:
+  - name: hyprwayland-scanner-deps
+    type: apt
+    sources:
+      - packages:
+        - libgbm-dev
 - name: hyprlang
   type: shell
   commands:
