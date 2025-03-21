@@ -58,6 +58,8 @@ modules:
 - name: wayland
   type: meson
   buildflags:
+    - "--prefix=/usr"
+    - "--buildtype=release"
     - "-Ddocumentation=false"
   sources:
     - type: git
@@ -71,12 +73,18 @@ modules:
         - libxml2-dev
 - name: wayland-protocols
   type: meson
+  buildflags:
+    - "--prefix=/usr"
+    - "--buildtype=release"
   sources:
     - type: git
       url: https://gitlab.freedesktop.org/wayland/wayland-protocols.git
       tag: '1.41' # This is getting parsed as a number, so I need to quotate it.
 - name: libdisplay-info
   type: meson
+  buildflags:
+    - "--prefix=/usr"
+    - "--buildtype=release"
   sources:
     - type: git
       url: https://gitlab.freedesktop.org/emersion/libdisplay-info.git
@@ -181,20 +189,3 @@ modules:
         - libjxl-tools
         - libmagic-dev
         - libspng-dev
-
-# xdg-desktop-portal-hyprland, hyprpolkitagent
-
-# git clone --recursive https://github.com/hyprwm/Hyprland
-# cd Hyprland
-# make all && sudo make install (via cmake)
-
-# We want hyprland 0.47.2
-
-# Additionally to those, you will also need a few hypr* dependencies which may or may not be packaged for your distro of choice:
-
-#    aquamarine
-#    hyprlang
-#    hyprcursor
-#    hyprutils
-#    hyprgraphics
-#    hyprwayland-scanner (build-only
