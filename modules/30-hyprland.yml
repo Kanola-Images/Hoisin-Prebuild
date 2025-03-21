@@ -84,6 +84,16 @@ modules:
     sources:
       - packages:
         - hwdata
+- name: hyprwayland-scanner
+  type: shell
+  commands:
+  - git clone --depth 1 --branch v0.4.4 https://github.com/hyprwm/hyprwayland-scanner.git
+  - cd hyprwayland-scanner
+  - cmake -DCMAKE_INSTALL_PREFIX=/usr -B build
+  - cmake --build build -j `nproc`
+  - cmake --install build
+  - cd ..
+  - rm -rf hyprwayland-scanner
 - name: aquamarine
   type: shell
   commands:
@@ -147,16 +157,6 @@ modules:
         - libjxl-tools
         - libmagic-dev
         - libspng-dev
-- name: hyprwayland-scanner
-  type: shell
-  commands:
-  - git clone --depth 1 --branch v0.4.4 https://github.com/hyprwm/hyprwayland-scanner.git
-  - cd hyprwayland-scanner
-  - cmake -DCMAKE_INSTALL_PREFIX=/usr -B build
-  - cmake --build build -j `nproc`
-  - cmake --install build
-  - cd ..
-  - rm -rf hyprwayland-scanner
 
 # xdg-desktop-portal-hyprland, hyprpolkitagent
 
