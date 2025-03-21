@@ -28,6 +28,7 @@ stages:
     includes:
       - modules/30-hyprland.yml
       - modules/31-hyprland-xdg-portal.yml
+      - modules/32-hyprpolkitagent.yml
       - modules/50-qtgreet.yml
 
   - name: cleanup

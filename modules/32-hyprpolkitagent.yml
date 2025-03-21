@@ -1,0 +1,26 @@
+name: hyprpolkit
+type: shell
+commands:
+- git clone --depth 1 --branch v0.1.2 https://github.com/hyprwm/hyprpolkitagent.git
+- cd hyprpolkitagent/
+- cmake --no-warn-unused-cli -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -S . -B ./build
+- cmake --build ./build --config Release --target hyprpolkitagent
+- cmake --install build
+- cd ..
+- rm -rf hyprpolkitagent
+modules:
+- name: hyprpolkit-deps
+  type: apt
+  sources:
+    - packages:
+      - libpolkit-qt6-1-dev
+- name: hyprland-qt-support
+  type: shell
+  commands:
+  - git clone --depth 1 --branch v0.1.0 https://github.com/hyprwm/hyprland-qt-support.git
+  - cd hyprland-qt-support
+  - cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX:PATH=/usr -DINSTALL_QML_PREFIX=/lib/qt6/qml -DCMAKE_INSTALL_LIBDIR=/usr/lib -S . -B ./build
+  - cmake --build ./build --config Release --target all
+  - cmake --install build
+  - cd ..
+  - rm -rf hyprland-qt-support
