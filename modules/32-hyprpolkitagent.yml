@@ -14,6 +14,7 @@ modules:
   sources:
     - packages:
       - libpolkit-qt6-1-dev
+      - qt6-base-dev
 - name: hyprland-qt-support
   type: shell
   commands:
