@@ -207,6 +207,7 @@ modules:
         - qt6-base-dev
         - qt6-declarative-dev
         - qt6-wayland-dev
+        - qt6-wayland-private-dev
   - name: hyprland-qt-support
     type: shell
     commands:
